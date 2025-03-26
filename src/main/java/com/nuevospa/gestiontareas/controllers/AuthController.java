@@ -2,6 +2,7 @@ package com.nuevospa.gestiontareas.controllers;
 
 import com.nuevospa.gestiontareas.configs.oauth.JwtUtil;
 import com.nuevospa.gestiontareas.dtos.AuthRequest;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,9 @@ public class AuthController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/login")
+    @Operation(
+            summary     = "Realiza el login",
+            description = "Compara las credenciales del usuario y devuelve un token JWT si son correctas")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
         System.out.println("Intentando login con usuario: " + request.getUsername());
         try {
